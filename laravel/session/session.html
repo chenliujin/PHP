@@ -1,0 +1,21 @@
+<h2>赋值</h2>
+<pre>
+Session::put('key', 'value');	
+
+//PHP的原生session
+$_SESSION['key'] = 'value';
+</pre>
+
+<h2>取值</h2>
+<pre>
+$value = Session::get('key', 'default');	
+
+//PHP的原生session
+$value = $_SESSION['key'];
+</pre>
+
+<h2>删除</h2>
+<pre>
+Session::forget('key');
+</pre>
+
