@@ -1,0 +1,16 @@
+<h2>权限</h2>
+<pre>
+$ chmod a+w bootstrap/cache	
+$ chmod -R 777 storage/
+</pre>
+
+<h2>开发模式</h2>
+<h3>app/config/app.php</h3>
+<pre>
+	#'debug' => env('APP_DEBUG', false), 
+    'debug' => env('APP_DEBUG', true), 
+
+    #'cipher' => 'AES-256-CBC',
+    'cipher' => MCRYPT_RIJNDAEL_128,
+
+</pre>
