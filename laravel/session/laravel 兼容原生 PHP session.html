@@ -1,4 +1,43 @@
 
+
+<h2>存储：Illuminate\Session\Store.php</h2>
+<pre>
+    public function save()
+    {
+        $this->addBagDataToSession();
+
+        $this->ageFlashData();
+
+        $this->handler->write($this->getId(), $this->prepareForStorage(serialize($this->attributes)));
+
+        $this->started = false;
+    }	
+</pre>
+
+<h2>读取：Illuminate\Session\Store.php</h2>
+<pre>
+    /**
+     * Read the session data from the handler.
+     *
+     * @return array
+     */
+    protected function readFromHandler()
+    {
+        $data = $this->handler->read($this->getId());
+
+        if ($data) {
+            $data = @unserialize($this->prepareForUnserialize($data));
+
+            if ($data !== false && $data !== null && is_array($data)) {
+                return $data;
+            }
+        }
+
+        return [];
+    }	
+</pre>
+
+
 <h2>参考文献</h2>
 <ul>
 	<li><a href="http://www.freebuf.com/articles/web/90837.html">PHP序列化与反序列化解读</a></li>
