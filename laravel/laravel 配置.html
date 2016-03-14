@@ -15,6 +15,31 @@ $ chmod -R 777 storage/
 
 </pre>
 
+<h2>Route</h2>
+<p>laravel/app/Http/routes.php</p>
+
+<h2>Nginx</h2>
+<pre>
+        location / {
+                try_files $uri $uri/ /index.php$is_args$args;
+        }	
+</pre>
+
+<h2>Session</h2>
+<p>/config/database.php</p>
+<pre>
+    'redis' => [
+
+        'cluster' => false,
+
+        'default' => [
+            'host'     => env('SESSION_REDIS_HOST', '192.168.0.108'),
+            'port'     => env('SESSION_REDIS_PORT', 6379),
+            'database' => env('SESSION_REDIS_DB', 1),
+            'password' => env('SESSION_REDIS_PASS', 123456),
+        ],
+    ],
+</pre>
 
 <h2>╡н©╪ндов</h2>
 <ul>
