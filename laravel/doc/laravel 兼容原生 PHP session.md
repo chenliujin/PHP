@@ -1,7 +1,7 @@
 
 
 <h2>laravel Session ¥Ê¥¢£∫Illuminate\Session\Store.php</h2>
-<pre>
+```php
     public function save()
     {
         $this->addBagDataToSession();
@@ -12,7 +12,7 @@
 
         $this->started = false;
     }	
-</pre>
+```
 
 <h2>laravel Session ∂¡»°£∫Illuminate\Session\Store.php</h2>
 <pre>
