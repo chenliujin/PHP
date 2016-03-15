@@ -123,7 +123,7 @@ session.serialize_handler = php_serialize # 使用新的序列化方法
     }
 ```
 * error_log
- ```
+```
  [15-Mar-2016 07:59:01 UTC] array (
   'securityToken' => '03eac95413cbfcc16ea599f36d2e24e2',
 )
@@ -194,9 +194,9 @@ public function save()
 }
 ```
 * redis
- * key
- > PHPREDIS_SESSION:6d8d36a7abe4318891c60308f47bb8ed489bfb5a
- * value
+ * key  
+ PHPREDIS_SESSION:6d8d36a7abe4318891c60308f47bb8ed489bfb5a
+ * value  
 ```
 "s:67:\"a:1:{s:13:\"securityToken\";s:32:\"03eac95413cbfcc16ea599f36d2e24e2\";}\";"
 ```
