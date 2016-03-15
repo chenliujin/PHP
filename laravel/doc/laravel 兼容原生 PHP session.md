@@ -7,16 +7,19 @@
 使用 laravel 框架对 zencart 站点或其它框架实现的项目（如：ThinkPHP）进行重构，把业务一步一步转移到 laravel 的项目中，此时需要共享两边的 session。需要实现 laravel 生成的 session 数据 PHP 原生 session 可以读取，反之亦然，最终大大降低系统重构的复杂度。
 
 ## 方案
-### session 使用的序列化算法
+### laravel session 序列化方法
+php serialize
+### PHP session 使用的序列化算法
 | 处理器         | 对应的存储格式    |
 | ------------------ |:---------------------|
 | php_binary      | 键名的长度对应的 ASCII 字符＋键名＋经过 serialize() 函数反序列处理的值 |
 | php           | 键名＋竖线＋经过 serialize() 函数反序列处理的值   |
 |php_serialize (php>=5.5.4) |经过 serialize() 函数反序列处理的数组|
 ### php 5.3.3
-<img src="./img/session.5.3.3.PNG" />
+<img src="https://raw.githubusercontent.com/chenliujin/PHP/master/laravel/doc/img/php.session.5.3.3.PNG" />
 
-### php 5.5.32 
+### php 5.5.32
+<img src="https://raw.githubusercontent.com/chenliujin/PHP/master/laravel/doc/img/php.session.5.5.32.PNG" />
 
 ## PHP
 * 升级 PHP 到 5.5
