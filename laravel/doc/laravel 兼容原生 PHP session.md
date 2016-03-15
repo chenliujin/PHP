@@ -15,7 +15,7 @@
 ```
 
 <h2>laravel Session 读取：Illuminate\Session\Store.php</h2>
-<pre>
+```php
     /**
      * Read the session data from the handler.
      *
@@ -35,7 +35,7 @@
 
         return [];
     }	
-</pre>
+```
 
 <h2>Session 对应的 Cookie 名称保持一致</h2>
 <pre>
