@@ -7,14 +7,18 @@
 使用 laravel 框架对 zencart 站点或其它框架实现的项目（如：ThinkPHP）进行重构，把业务一步一步转移到 laravel 的项目中，此时需要共享两边的 session。需要实现 laravel 生成的 session 数据 PHP 原生 session 可以读取，反之亦然，最终大大降低系统重构的复杂度。
 
 ## 方案
+使用相同的序列化算法，保持两边序列化后的结果一致。
 ### laravel session 序列化方法
-php serialize
-### PHP session 使用的序列化算法
+serialize / unserialize
+### session.serialize_handler
+session.serialize_handler 定义用来序列化／解序列化的处理器名字。 当前支持 PHP 序列化格式 (名为 php_serialize)、 PHP PHP 内部格式 (名为 php 及 php_binary) 和 WDDX (名为 wddx)。 如果 PHP 编译时加入了 WDDX 支持，则只能用 WDDX。 自 PHP 5.5.4 起可以使用 php_serialize。 php_serialize 在内部简单地直接使用 serialize/unserialize 函数，并且不会有 php 和 php_binary 所具有的限制。 使用较旧的序列化处理器导致 $_SESSION 的索引既不能是数字也不能包含特殊字符(| and !) 。 使用 php_serialize 避免脚本退出时，数字及特殊字符索引导致出错。 默认使用 php。
+
 | 处理器         | 对应的存储格式    |
 | ------------------ |:---------------------|
 | php_binary      | 键名的长度对应的 ASCII 字符＋键名＋经过 serialize() 函数反序列处理的值 |
 | php           | 键名＋竖线＋经过 serialize() 函数反序列处理的值   |
 |php_serialize (php>=5.5.4) |经过 serialize() 函数反序列处理的数组|
+
 ### php 5.3.3
 <img src="https://raw.githubusercontent.com/chenliujin/PHP/master/laravel/doc/img/php.session.5.3.3.PNG" />
 
