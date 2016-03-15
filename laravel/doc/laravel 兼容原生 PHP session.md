@@ -8,6 +8,15 @@
 
 ## 方案
 ### session 使用的序列化算法
+| 处理器         | 对应的存储格式    |
+| ------------------ |:---------------------|
+| php_binary      | 键名的长度对应的 ASCII 字符＋键名＋经过 serialize() 函数反序列处理的值 |
+| php           | 键名＋竖线＋经过 serialize() 函数反序列处理的值   |
+|php_serialize (php>=5.5.4) |经过 serialize() 函数反序列处理的数组|
+### php 5.3.3
+<img src="./img/session.5.3.3.PNG" />
+
+### php 5.5.32 
 
 ## PHP
 * 升级 PHP 到 5.5
