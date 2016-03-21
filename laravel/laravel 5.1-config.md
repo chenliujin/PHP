@@ -26,10 +26,6 @@ $ chmod -R 777 storage/
 <pre>
 	#'debug' => env('APP_DEBUG', false),
     'debug' => env('APP_DEBUG', true),
-
-    #'cipher' => 'AES-256-CBC',
-    'cipher' => MCRYPT_RIJNDAEL_128,
-
 </pre>
 
 <h2>Route</h2>
