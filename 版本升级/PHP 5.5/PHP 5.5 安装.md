@@ -12,31 +12,35 @@ $ yum remove php*
 ```
 
 ## remi-release
+### CentOS 6
 ```
-$ yum install -y http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+$ yum install http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+```
+### CentOS 7
+```
+$ yum remove epel-release
+$ yum install http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
+
+$ yum remove remi-release
+$ yum install http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
+```
+### 启用 remi release
+```
+$ vim /etc/yum.repos.d/remi.repo
+[remi]
+enabled=1
+
+[remi-php55]
+enabled=1
 ```
 
 ### 安装 php 5.5
 ```
-$ yum --enablerepo=remi,remi-php55 install php php-fpm php-common php-devel php-gd php-mysqlnd php-mcrypt php-mbstring php-pdo php-redis php-gearman php-http php-memcache php-xcache
+$ yum --enablerepo=remi,remi-php55 install php php-fpm php-common php-devel php-gd php-mysqlnd php-mcrypt php-mbstring php-pdo php-redis php-gearman php-http php-memcache php-xcache php-soap
 ```
 
 
-
-
-<h2>安装 PHP 5.5</h2>
-<pre>
-$ yum install -y php55w-fpm php55w-pecl-gearman  php55w-devel
-
-# laravel 5.x
-$ yum install -y php55w-mcrypt php55w-mbstring php55w-pdo php55w-pecl-redis php55w-mysql
-
-</pre>
-
-
-<h2>参考文献</h2>
-<ul>
-	<li>https://webtatic.com/packages/php55/</li>
-	<li>http://www.ahlinux.com/centos/22672.html</li>
-	<li>https://www.softwarecollections.org/en/scls/rhscl/php55/</li>
-</ul>
+## 参考文献
+* https://www.digitalocean.com/community/questions/how-to-install-php-5-6-on-centos-7-0-x64
+* http://www.ahlinux.com/centos/22672.html
+* https://www.softwarecollections.org/en/scls/rhscl/php55/
