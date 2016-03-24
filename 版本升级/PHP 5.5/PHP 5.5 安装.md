@@ -36,7 +36,8 @@ enabled=1
 
 ### 安装 php 5.5
 ```
-$ yum --enablerepo=remi,remi-php55 install php php-fpm php-common php-devel php-gd php-mysqlnd php-mcrypt php-mbstring php-pdo php-redis php-gearman php-http php-memcache php-xcache php-soap
+$ yum --enablerepo=remi,remi-php55 install php php-fpm php-common php-devel
+$ yum --enablerepo=remi,remi-php55 install php-gd php-mysqlnd php-mcrypt php-mbstring php-pdo php-redis php-gearman php-http php-memcache php-xcache php-soap
 ```
 
 
