@@ -1,4 +1,4 @@
-## 用户昵称
+## 截取用户昵称
 ```php
 <?php
 function getDisplayName()
