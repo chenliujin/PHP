@@ -20,6 +20,16 @@ $ chmod a+w bootstrap/cache
 $ chmod -R 777 storage/
 ```
 
+## Route
+http://localhost/phpinfo
+```
+$ vim app/Http/routes.php
+
+Route::get('/phpinfo', function() {
+    phpinfo();
+});
+```
+
 <h2>Session</h2>
 <p>/config/database.php</p>
 <pre>
@@ -37,8 +47,7 @@ $ chmod -R 777 storage/
 </pre>
 
 
-<h2>Route</h2>
-<p>laravel/app/Http/routes.php</p>
+
 
 ## config/app.php
 ```php
