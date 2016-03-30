@@ -237,6 +237,14 @@ $_SESSION['language'] = 'english';
 Session::put('language', 'en');
 ```
 
+## 升级步骤
+* Step 1, 将所有服务器升级至 php 5.5
+* Step 2, 修改序列化方法
+* Step 3, 同时写新旧数据，长于 session 过期时间
+* Step 4, 读新数据
+* Step 5, 读正常后，只写新数据
+
+
 
 ## 参考文献
 <ul>
