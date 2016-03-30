@@ -25,7 +25,7 @@
  Route::resource('history', 'HistoryController');
 ```
 
-##
+## 按项目创建 Controller
 ```
 $ php artisan list
 $ php artisan make:controller HistoryController
