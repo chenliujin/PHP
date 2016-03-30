@@ -22,13 +22,24 @@
 
 ## config
 ```
- Route::resource('history', 'HistoryController');
+
 ```
 
-## 按项目创建 Controller
+## 按项目创建 Controller 和路由
+### Stock
 ```
-$ php artisan list
-$ php artisan make:controller HistoryController
+$ php artisan make:controller Stock/IndexController
+
+$ vim app/Http/routes.php
+Route::resource('stock/history', 'Stock\HistoryController');
+```
+
+### Blog
+```
+$ php artisan make:controller Blog/IndexController
+
+$ vim app/Http/routes.php
+Route::resource('blog/history', 'Blog\IndexController');
 ```
 
 

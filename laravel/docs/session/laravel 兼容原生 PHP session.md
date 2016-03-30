@@ -11,7 +11,9 @@
 ### laravel session 序列化方法
 serialize / unserialize
 ### session.serialize_handler
+```
 session.serialize_handler 定义用来序列化／解序列化的处理器名字。 当前支持 PHP 序列化格式 (名为 php_serialize)、 PHP PHP 内部格式 (名为 php 及 php_binary) 和 WDDX (名为 wddx)。 如果 PHP 编译时加入了 WDDX 支持，则只能用 WDDX。 自 PHP 5.5.4 起可以使用 php_serialize。 php_serialize 在内部简单地直接使用 serialize/unserialize 函数，并且不会有 php 和 php_binary 所具有的限制。 使用较旧的序列化处理器导致 $_SESSION 的索引既不能是数字也不能包含特殊字符(| and !) 。 使用 php_serialize 避免脚本退出时，数字及特殊字符索引导致出错。 默认使用 php。
+```
 
 | 处理器         | 对应的存储格式    |
 | ------------------ |:---------------------|
@@ -88,6 +90,26 @@ session.serialize_handler = php_serialize # 使用新的序列化方法
 
         return [];
     }
+```
+
+### 允许 laravel 使用 zencart 生成的 session id，不校验长度
+```diff
+Index: Store.php
+===================================================================
+--- Store.php   (revision 124)
++++ Store.php   (working copy)
+@@ -169,9 +169,11 @@
+      */
+     public function setId($id)
+     {
++               /*
+         if (! $this->isValidId($id)) {
+             $id = $this->generateSessionId();
+         }
++                */
+
+         $this->id = $id;
+     }
 ```
 
 
