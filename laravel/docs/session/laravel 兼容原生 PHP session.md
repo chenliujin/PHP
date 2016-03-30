@@ -239,7 +239,7 @@ Session::put('language', 'en');
 
 ## 升级步骤
 * Step 1, 将所有服务器升级至 php 5.5
-* Step 2, 修改序列化方法
+* Step 2, 修改序列化方法 php_serialize（切换后，php 5.5 的 session 可以读取按 php 序列化的数据重新按 php_serialize 序列化后保存，读取时可以兼容，CentOS 7 验证）
 * Step 3, 同时写新旧数据，长于 session 过期时间
 * Step 4, 读新数据
 * Step 5, 读正常后，只写新数据
