@@ -47,3 +47,8 @@ Route::resource('blog/history', 'Blog\IndexController');
 ## 参考文献
 * [使用laravel一分钟搭建CURD后台页面](http://www.cnblogs.com/yjf512/p/4061892.html)
 * [RESTful 资源控制器](http://www.golaravel.com/laravel/docs/5.1/controllers/#restful-resource-controllers)
+* [Laravel五大功能之Eloquent关系模式](http://blog.csdn.net/xd43100678/article/details/24376607)
+* [Laravel 写的 blog](http://www.zhangxihai.cn/)
+* [Laravel 5系列教程四：数据库和Eloquent](https://jellybool.com/post/programming-with-laravel-5-database-and-eloquent-model)
+* [Laravel 5.1 教程1 - 10分钟写一个Blog](http://www.zhangxihai.cn/archives/120)
+* [Laravel 5框架学习之Eloquent （laravel 的ORM）](http://www.jb51.net/article/63683.htm)
