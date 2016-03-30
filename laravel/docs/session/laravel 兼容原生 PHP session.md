@@ -22,10 +22,10 @@ session.serialize_handler 定义用来序列化／解序列化的处理器名字
 |php_serialize (php>=5.5.4) |经过 serialize() 函数反序列处理的数组|
 
 ### php 5.3.3
-<img src="https://raw.githubusercontent.com/chenliujin/PHP/master/laravel/doc/img/php.session.5.3.3.PNG" />
+<img src="https://raw.githubusercontent.com/chenliujin/PHP/master/laravel/docs/session/img/php.session.5.3.3.PNG" />
 
 ### php 5.5.32
-<img src="https://raw.githubusercontent.com/chenliujin/PHP/master/laravel/doc/img/php.session.5.5.32.PNG" />
+<img src="https://raw.githubusercontent.com/chenliujin/PHP/master/laravel/docs/session/img/php.session.5.5.32.PNG" />
 
 ## PHP
 * 升级 PHP 到 5.5
