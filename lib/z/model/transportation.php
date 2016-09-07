@@ -1,8 +1,17 @@
 <?php
 namespace z;
 
-class transportation extends Model
+class transportation extends \Model
 {
+	/**
+	 * @author chenliujin <liujin.chen@qq.com>
+	 * @since 2016-09-07
+	 */
+	static public function getTableName()
+	{
+		return 'transportation';
+	}
+
 	/**
 	 * @author chenliujin <liujin.chen@qq.com>
 	 * @since 2016-09-07

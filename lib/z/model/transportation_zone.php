@@ -2,8 +2,17 @@
 
 namespace z;
 
-class transportation_zone extends Model
+class transportation_zone extends \Model
 {
+	/**
+	 * @author chenliujin <liujin.chen@qq.com>
+	 * @since 2016-09-07
+	 */
+	static public function getTableName()
+	{
+		return 'transportation_zone';
+	}
+
 	/**
 	 * @author chenliujin <liujin.chen@qq.com>
 	 * @since 2016-09-07
