@@ -77,8 +77,12 @@ class transportation extends Model
 		$shipping_cost = $shipping_weight * $transportation_zone->price;
 
 		return array(
-			'methods' => array(
+			'id'		=> $this->code,
+			'module'	=> '',
+			'methods' 	=> array(
 				array(
+					'id'	=> $this->code,
+					'title'	=> '',
 					'cost'	=> $shipping_cost
 				)
 			)

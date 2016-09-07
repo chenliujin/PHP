@@ -21,6 +21,6 @@ class transportation_zone extends Model
 			}
 		}
 
-		throw new Exception('Error: Transportation Zone Not Exists');
+		throw new Exception('Setting Error: Transportation Zone Not Exists');
 	}
 }
