@@ -9,32 +9,9 @@ class transportation extends Model
 	 */
 	public function check_enabled()
 	{
-		$this->check_enabled_for_zone();
 		$this->check_max_weight();
 		$this->check_forbidden();
 		$this->check_amount();
-	}
-
-	/**
-	 * @author chenliujin <liujin.chen@qq.com>
-	 * @since 2016-09-07
-	 */
-	public function check_enabled_for_zone()
-	{
-		$transportation_zone 		= new \z\transportation_zone;
-		$transportation_zone_list 	= $transportation_zone->get($this->transportation_id);
-
-		foreach ($tansportation_zone_list as $transportation_zone) {
-			if ($transportation_zone->countries == 'ALL') {
-				return $transportation_zone;
-			}
-
-			if (in_array($delivery_country, explode(',', $transportation_zone->countries))) {
-				return $transportation_zone;
-			}
-		}
-
-		throw new Exception('Error: Transportation Zone Not Exists');
 	}
 
 	/**
@@ -95,6 +72,8 @@ class transportation extends Model
 	 */
 	public function per_unit_weight()
 	{
+		$transportation_zone = transportation_zone::get_transportation_zone($this->transportation_id, $delivery_country);
+
 		$shipping_cost = $shipping_weight * $transportation_zone->price;
 
 		return array(
