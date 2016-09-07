@@ -111,11 +111,11 @@ class transportation extends \Model
 
 		return array(
 			'id'		=> $this->code,
-			'module'	=> 'xxxx',
+			'module'	=> $this->code,
 			'methods' 	=> array(
 				array(
 					'id'	=> $this->code,
-					'title'	=> 'xxx',
+					'title'	=> $this->code,
 					'cost'	=> $shipping_cost
 				)
 			)
