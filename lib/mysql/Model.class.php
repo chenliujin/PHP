@@ -2,14 +2,25 @@
 
 class Model
 {
-	public static $dbo;
+	static public $host 	= 'localhost';
+	static public $port 	= 3306;
+	static public $dbName 	= '';
+	static public $dbUser 	= 'root';
+	static public $dbPwd 	= '';
+	static public $dbo;
 
 	/**
 	 * @author chenliujin <liujin.chen@qq.com>
 	 * @since 2016-09-07
 	 */
-    static public function GetDbHandle($host = 'localhost', $port = 3306, $dbName = '', $dbUser = 'root', $dbPwd='')
+    static public function GetDbHandle()
     {
+		$host 	= self::$host;
+		$port 	= self::$port;
+		$dbName = self::$dbName;
+		$dbUser = self::$dbUser;
+		$dbPwd 	= self::$dbPwd;
+
         $errMode = PDO::ERRMODE_SILENT;
 
         $conn = new PDO("mysql:host={$host};port={$port};dbname={$dbName}", $dbUser, $dbPwd);

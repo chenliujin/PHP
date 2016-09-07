@@ -2,6 +2,8 @@
 
 namespace z;
 
+include_once('z/model/z.php');
+
 class transportation_zone extends \Model
 {
 	/**
@@ -22,7 +24,8 @@ class transportation_zone extends \Model
 		$transportation_zone 		= new self;
 		$transportation_zone_list 	= $transportation_zone->findAll(array('transportation_id' => $transportation_id));
 
-		foreach ($tansportation_zone_list as $transportation_zone) {
+
+		foreach ($transportation_zone_list as $transportation_zone) {
 			if ($transportation_zone->countries == 'ALL') {
 				return $transportation_zone;
 			} elseif (in_array($delivery_country, explode(',', $transportation_zone->countries))) {
@@ -30,6 +33,6 @@ class transportation_zone extends \Model
 			}
 		}
 
-		throw new Exception('Setting Error: Transportation Zone Not Exists');
+		throw new \Exception('Setting Error: Transportation Zone Not Exists');
 	}
 }

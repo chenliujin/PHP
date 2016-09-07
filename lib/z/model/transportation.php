@@ -1,6 +1,9 @@
 <?php
 namespace z;
 
+include_once('z/model/z.php');
+
+
 class transportation extends \Model
 {
 	/**
@@ -51,9 +54,18 @@ class transportation extends \Model
 	 * @author chenliujin <liujin.chen@qq.com>
 	 * @since 2016-09-04
 	 * @description: 报价
-	 * @return array (
-	 * 	'code'
-	 * 	'cost'
+	 * @return array(
+	 * 		'id'		=> '',
+	 * 		'module'	=> '',
+	 * 		'methods'	=> array(
+	 * 				array(
+	 * 					'id'	=> '',
+	 * 					'title'	=> '',
+	 * 					'cost'	=> $shipping_cost
+	 * 				)
+	 * 			),
+	 * 		'tax'		=> '',
+	 * 		'error'		=> '',
 	 * )
 	 */
 	public function quote()
@@ -69,15 +81,27 @@ class transportation extends \Model
 				break;
 
 			default:
-				throw new Exception('Setting Error: Transportation Method Not Exists');
+				throw new Exception('Setting Error: table.field transportation.method setting error');
 				break;
 		}
-
 	}
 
 	/**
 	 * @author chenliujin <liujin.chen@qq.com>
 	 * @since 2016-09-07
+	 * @return array(
+	 * 		'id'		=> '',
+	 * 		'module'	=> '',
+	 * 		'methods'	=> array(
+	 * 				array(
+	 * 					'id'	=> '',
+	 * 					'title'	=> '',
+	 * 					'cost'	=> $shipping_cost
+	 * 				)
+	 * 			),
+	 * 		'tax'		=> '',
+	 * 		'error'		=> '',
+	 * )
 	 */
 	public function per_unit_weight()
 	{
@@ -87,11 +111,11 @@ class transportation extends \Model
 
 		return array(
 			'id'		=> $this->code,
-			'module'	=> '',
+			'module'	=> 'xxxx',
 			'methods' 	=> array(
 				array(
 					'id'	=> $this->code,
-					'title'	=> '',
+					'title'	=> 'xxx',
 					'cost'	=> $shipping_cost
 				)
 			)
