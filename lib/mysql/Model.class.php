@@ -4,6 +4,21 @@ class Model
 {
 	public static $dbo;
 
+	/**
+	 * @author chenliujin <liujin.chen@qq.com>
+	 * @since 2016-09-07
+	 */
+    static public function GetDbHandle($host = 'localhost', $port = 3306, $dbName = '', $dbUser = 'root', $dbPwd='')
+    {
+        $errMode = PDO::ERRMODE_SILENT;
+
+        $conn = new PDO("mysql:host={$host};port={$port};dbname={$dbName}", $dbUser, $dbPwd);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, $errMode);
+        $conn->exec("SET NAMES utf8");
+
+        return $conn;
+    }
+
 	/*
 	 * @author chenliujin <liujin.chen@qq.com>
 	 * @since 2013-04-01
