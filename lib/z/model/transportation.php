@@ -21,7 +21,9 @@ class transportation extends \Model
 	 */
 	public function check_enabled()
 	{
-		$this->check_max_weight();
+		global $total_weight;
+
+		$this->check_max_weight($total_weight);
 		$this->check_forbidden();
 		$this->check_amount();
 	}
@@ -30,8 +32,11 @@ class transportation extends \Model
 	 * @author chenliujin <liujin.chen@qq.com>
 	 * @since 2016-09-07
 	 */
-	public function check_max_weight()
+	public function check_max_weight($total_weight)
 	{
+		if ($this->max_weight && $total_weight >= $this->max_weight) {
+			throw new \Exception('total_weight > max_weight');
+		}
 	}
 
 	/**
@@ -105,13 +110,16 @@ class transportation extends \Model
 	 */
 	public function per_unit_weight()
 	{
+		global $total_weight;
+
 		$transportation_zone = transportation_zone::get_transportation_zone($this->transportation_id, $delivery_country);
 
-		$shipping_cost = $shipping_weight * $transportation_zone->price;
+		$shipping_cost = $total_weight * $transportation_zone->price;
 
 		return array(
 			'id'		=> $this->code,
 			'module'	=> $this->code,
+			'icon'		=> $this->icon,
 			'methods' 	=> array(
 				array(
 					'id'	=> $this->code,
