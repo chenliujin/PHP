@@ -110,15 +110,27 @@ class transportation extends \Model
 	 */
 	public function per_unit_weight()
 	{
-		global $total_weight;
+		global $total_weight, $order;
+
+		$delivery_country = $order->delivery['country']['iso_code_2'];
 
 		$transportation_zone = transportation_zone::get_transportation_zone($this->transportation_id, $delivery_country);
 
 		$shipping_cost = $total_weight * $transportation_zone->price;
 
+
+		$options = [
+			'transportation_id' => $this->transportation_id,
+			'languages_id'		=> 1,
+		]; 
+
+		$transportation_description = new transportation_description;
+		$transportation_description = $transportation_description->findAll($options);
+		$transportation_description = $transportation_description[0];
+
 		return array(
 			'id'		=> $this->code,
-			'module'	=> $this->code,
+			'module'	=> $transportation_description->transportation_title, 
 			'icon'		=> $this->icon,
 			'methods' 	=> array(
 				array(

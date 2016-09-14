@@ -24,6 +24,9 @@ class transportation_zone extends \Model
 		$transportation_zone 		= new self;
 		$transportation_zone_list 	= $transportation_zone->findAll(array('transportation_id' => $transportation_id));
 
+		if (!$transportation_zone_list) {
+			throw new \Exception('Setting Error: Transportation Zone Not Exists');
+		}
 
 		foreach ($transportation_zone_list as $transportation_zone) {
 			if ($transportation_zone->countries == 'ALL') {
@@ -33,6 +36,5 @@ class transportation_zone extends \Model
 			}
 		}
 
-		throw new \Exception('Setting Error: Transportation Zone Not Exists');
 	}
 }
