@@ -116,8 +116,9 @@ class transportation extends \Model
 
 		$transportation_zone = transportation_zone::get_transportation_zone($this->transportation_id, $delivery_country);
 
-		$shipping_cost = $total_weight * $transportation_zone->price;
-
+		$shipping_cost  = $total_weight * $transportation_zone->price;
+		$shipping_cost += $this->registered_fee;
+		$shipping_cost *= 1.05;
 
 		$options = [
 			'transportation_id' => $this->transportation_id,
