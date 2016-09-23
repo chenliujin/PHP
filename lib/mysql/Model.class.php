@@ -34,7 +34,7 @@ class Model
 	 * @author chenliujin <liujin.chen@qq.com>
 	 * @since 2013-04-01
 	 */
-	public static function query($sql, $params, $class = 'stdClass')
+	public static function query($sql, $params = array(), $class = 'stdClass')
 	{
 		try {
 			$dbh = self::$dbo->getDbHandle();
@@ -112,6 +112,17 @@ class Model
 
 			return NULL;
 		}
+	}
+
+	/**
+	 * @author chenliujin <liujin.chen@qq.com>
+	 * @since 2016-09-24
+	 */
+	static public function findOne( array $options = [] )
+	{
+		$data = self::findAll($options);
+
+		return $data[0];
 	}
 
 	/*
