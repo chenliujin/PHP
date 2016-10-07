@@ -27,6 +27,19 @@ class products extends \Model
 
 	/**
 	 * @author chenliujin <liujin.chen@qq.com>
+	 * @since 2016-10-08
+	 */
+	static public function Image($filename, $alt='', $width='', $height='')
+	{
+		$part = explode('.', $filename);
+
+		$src = $part[0] . '_' . $width . '.' . $part[1];
+
+		return '<img src="' . $src . '" alt="' . $alt . '" title="' . $alt . '" width="' . $width . '" height="' . $height . '" />';
+	}
+
+	/**
+	 * @author chenliujin <liujin.chen@qq.com>
 	 * @since 2016-09-29
 	 * TODO clear $db, $currencies
 	 */
