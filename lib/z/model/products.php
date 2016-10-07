@@ -16,7 +16,19 @@ class products extends \Model
 
 	/**
 	 * @author chenliujin <liujin.chen@qq.com>
+	 * @since 2016-10-07
+	 */
+	static public function GetImage($filename, $size)
+	{
+		$part = explode('.', $filename);
+
+		return $part[0] . '_' . $size . '.' . $part[1];
+	}
+
+	/**
+	 * @author chenliujin <liujin.chen@qq.com>
 	 * @since 2016-09-29
+	 * TODO clear $db, $currencies
 	 */
 	static public function ShowPriceList( $products_id )
 	{
@@ -93,6 +105,7 @@ class products extends \Model
 	/**
 	 * @author chenliujin <liujin.chen@qq.com>
 	 * @since 2016-09-29
+	 * TODO clear $db, $currencies
 	 */
 	static public function GetPriceList( $products_id )
 	{
