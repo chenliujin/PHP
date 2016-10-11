@@ -1,6 +1,7 @@
 <?php
 
 include_once('chenliujin/mysql/Model.class.php');
+include_once('chenliujin/mysql/Page.php');
 
 if (empty(Model::$dbo)) {
 	Model::$host = '192.168.145.129';
