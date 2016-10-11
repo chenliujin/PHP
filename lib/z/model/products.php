@@ -3,6 +3,10 @@ namespace z;
 
 include_once('z/model/z.php');
 
+/**
+ * TODO
+ * products_link: 添加字段生成产品的链接，考虑 SEO
+ */
 class products extends \Model
 {
 	/**
@@ -50,50 +54,15 @@ class products extends \Model
 		$price = self::GetPriceList( $products_id );
 
 		switch (TRUE) {
-			case (!empty($price->special_price)):
+			case !empty($price->sale_price): 
 				$str = ' 
 					<tr>
-						<td class="size-base text-right nowrap">List Price:</td>
+						<td class="size-base text-right nowrap">Price:</td>
 						<td class="price-del">' . $currencies->format($price->normal_price) . '</td>
 					</tr>
-					';
-				if ($price->special_price != $price->sale_price) {
-					$str .= '
-						<tr>
-							<td class="size-base text-right nowrap">Price:</td>
-							<td class="price-del">' . $currencies->format($price->special_price) . '</td>
-						</tr>
-						<tr>
-							<td class="size-base text-right nowrap">' . PRODUCT_PRICE_SALE . '</td>
-							<td class="size-medium price">' . $currencies->format($price->sale_price) . '</td>
-						</tr>
-						';
-				} else {
-					$str .= '
-						<tr>
-							<td class="size-base text-right nowrap">Price:</td>
-							<td class="size-medium price">' . $currencies->format($price->special_price) . '</td>
-						</tr>
-						';
-				}
-
-				$str .= '
-					<tr>
-						<td class="size-base text-right nowrap">' . PRODUCT_PRICE_DISCOUNT_PREFIX . '</td>
-						<td class="price">' . $price->sale_discount . '</td>
-					</tr>
-					';
-				break;
-			
-			case (empty($price->special_price) && !empty($price->sale_price)): 
-				$str = ' 
-					<tr>
-						<td class="size-base text-right nowrap">List Price:</td>
-						<td class="price-del">' . $currencies->format($price->normal_price) . '</td>
-					</tr>
-					<tr>
+					<tr class="price">
 						<td class="size-base text-right nowrap">' . PRODUCT_PRICE_SALE .'</td>
-						<td class="size-medium price">' . $currencies->format($price->sale_price) . '</td>
+						<td class="size-medium">' . $currencies->format($price->sale_price) . '</td>
 					</tr>
 					<tr>
 						<td class="size-base text-right nowrap">' . PRODUCT_PRICE_DISCOUNT_PREFIX . '</td>
@@ -157,5 +126,45 @@ class products extends \Model
 		}
 
 		return $price;
+	}
+
+	/**
+	 * @author chenliujin <liujin.chen@qq.com>
+	 * @since 2016-10-09
+	 */
+	static public function GetAllProducts()
+	{
+		$sql = "
+			SELECT 
+				p.products_type, 
+				p.products_id, 
+				pd.products_name, 
+				p.products_image, 
+				p.products_price, 
+				p.products_tax_class_id, 
+				p.products_date_added, 
+				m.manufacturers_name, 
+				p.products_model, 
+				p.products_quantity, 
+				p.products_weight, 
+				p.product_is_call, 
+				p.product_is_always_free_shipping, 
+				p.products_qty_box_status, 
+				p.master_categories_id 
+			FROM " . self::GetTableName() . " p LEFT JOIN " . TABLE_MANUFACTURERS . " m ON (p.manufacturers_id = m.manufacturers_id), " . TABLE_PRODUCTS_DESCRIPTION . " pd 
+			WHERE 
+				p.products_status = 1 AND 
+				p.products_id = pd.products_id AND 
+				pd.language_id = ? " . 
+			$order_by; 
+
+		$params = [
+			$_SESSION['languages_id']
+		];
+
+		$page = new \Page($sql, $params);
+		$page->per_page_rows(15);
+
+		return $page;
 	}
 }

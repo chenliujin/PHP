@@ -19,9 +19,10 @@ class Page extends \Model
 	 * @author chenliujin <liujin.chen@qq.com>
 	 * @since 2016-10-09
 	 */
-	public function __construct($query, $params)
+	public function __construct($query, $params = array())
 	{
 		$this->query 		= $query;
+		$this->query		= str_replace(PHP_EOL, ' ', $this->query); //去掉换行符
 		$this->query_params = $params;
 	}
 
@@ -29,7 +30,7 @@ class Page extends \Model
 	 * @author chenliujin <liujin.chen@qq.com>
 	 * @since 2016-10-09
 	 */
-	public function setMaxRows($num)
+	public function per_page_rows($num)
 	{
 		$this->number_of_rows_per_page = intval($num) > 0 ? intval($num) : 20;
 	}
@@ -61,6 +62,7 @@ class Page extends \Model
 	 */
 	public function data()
 	{
+		$this->current_page = !empty($_REQUEST[$this->page_name]) ? intval($_REQUEST[$this->page_name]) : 1;
 		$this->number_of_rows = $this->total();
 		$this->page_total = ceil($this->number_of_rows / $this->number_of_rows_per_page);
 
@@ -79,8 +81,53 @@ class Page extends \Model
 	/**
 	 * @author chenliujin <liujin.chen@qq.com>
 	 * @since 2016-10-09
+	 * TODO: SEO
 	 */
 	public function nav()
 	{
+		$url = $_SERVER['REQUEST_URI'];
+		$url = preg_replace('/(#.+$|[?&]+' . $this->page_name . '=[0-9]+)/', '', $url);
+
+		if ($this->current_page <= 1) {
+			$pre = '<span class="tmp">&lt;</span>'; 
+			$next = $this->page_total > 1 ? ('<a href="' . $url . ((strpos($url, '?') ? '&' : '?') . $this->page_name . '=' . 2) . '"><span class="tmp">&gt;</span></a>') : '&gt;';
+		} else {
+			$preUrl = $url . (strpos($url, '?') ? '&' : '?') . $this->page_name . '=' . ($this->current_page - 1);
+
+			$pre = '
+				<a href="' . $preUrl . '">
+					<span class="tmp">&lt;</span>
+				</a>';
+
+			if ($this->current_page+1 > $this->page_total) {
+				$next = '<span class="tmp">&gt;</span>';
+			} else {
+				$url .= (strpos($url, '?') ? '&' : '?') . $this->page_name . '=' . (($this->current_page + 1 > $this->page_total) ? $this->page_total : $this->current_page + 1);
+				$next = '<a href="' . $url . '"><span class="tmp">&gt;</span></a>';
+			}
+		}
+
+		$nav = <<<EOB
+<style>
+.pre, .next  {
+	border:1px #ccc solid;
+	border-radius:2px;
+	background:#FFF;
+	display: inline-block;
+}
+.tmp {
+	width: 15px;
+	padding:0.3em 1.5em;
+	background:#FFF;
+	display: inline-block;
+
+}
+</style>
+		<ul style="list-style: none">
+			<li class="pre L" style="">$pre</li>
+			<li class="next R" style="margin-left: 10px">$next</li>
+		</ul>
+EOB;
+		echo $nav;
 	}
 }
