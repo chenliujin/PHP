@@ -85,12 +85,14 @@ class Page extends \Model
 	 */
 	public function nav()
 	{
+		if ($this->page_total <= 1) return;
+
 		$url = $_SERVER['REQUEST_URI'];
 		$url = preg_replace('/(#.+$|[?&]+' . $this->page_name . '=[0-9]+)/', '', $url);
 
 		if ($this->current_page <= 1) {
 			$pre = '<span class="tmp">&lt;</span>'; 
-			$next = $this->page_total > 1 ? ('<a href="' . $url . ((strpos($url, '?') ? '&' : '?') . $this->page_name . '=' . 2) . '"><span class="tmp">&gt;</span></a>') : '&gt;';
+			$next = $this->page_total > 1 ? ('<a href="' . $url . ((strpos($url, '?') ? '&' : '?') . $this->page_name . '=' . 2) . '"><span class="tmp">&gt;</span></a>') : '<span class="tmp">&gt;</span>';
 		} else {
 			$preUrl = $url . (strpos($url, '?') ? '&' : '?') . $this->page_name . '=' . ($this->current_page - 1);
 
