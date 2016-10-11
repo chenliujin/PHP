@@ -2,6 +2,8 @@
 
 include_once('chenliujin/mysql/Model.class.php');
 
+require('/data/z/conf/configure.php');
+
 if (empty(Model::$dbo)) {
 	Model::$host 	= DB_SERVER;
 	Model::$dbName 	= DB_DATABASE;
