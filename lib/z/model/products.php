@@ -155,8 +155,9 @@ class products extends \Model
 			WHERE 
 				p.products_status = 1 AND 
 				p.products_id = pd.products_id AND 
-				pd.language_id = ? " . 
-			$order_by; 
+				pd.language_id = ? 
+			ORDER BY products_id DESC
+			"; 
 
 		$params = [
 			$_SESSION['languages_id']
