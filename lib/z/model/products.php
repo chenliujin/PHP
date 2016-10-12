@@ -5,7 +5,7 @@ include_once('z/model/z.php');
 
 /**
  * TODO
- * products_link: 添加字段生成产品的链接，考虑 SEO
+ * products_description.products_url: 添加字段生成产品的链接，考虑 SEO
  */
 class products extends \Model
 {
@@ -93,7 +93,7 @@ class products extends \Model
 	{
 		global $db, $currencies;
 
-		$price = NULL;
+		$price = new \stdClass;
 
 		$product_check = $db->Execute("
 			select 
