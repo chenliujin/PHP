@@ -156,7 +156,6 @@ class products extends \Model
 				p.products_status = 1 AND 
 				p.products_id = pd.products_id AND 
 				pd.language_id = ? 
-			ORDER BY products_id DESC
 			"; 
 
 		$params = [
@@ -165,6 +164,7 @@ class products extends \Model
 
 		$page = new \Page($sql, $params);
 		$page->per_page_rows(15);
+		$page->order_by('ORDER BY products_id DESC');
 
 		return $page;
 	}

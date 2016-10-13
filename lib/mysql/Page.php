@@ -28,6 +28,15 @@ class Page extends \Model
 
 	/**
 	 * @author chenliujin <liujin.chen@qq.com>
+	 * @since 2016-10-13
+	 */
+	public function order_by($order_by)
+	{
+		$this->order_by = $order_by;
+	}
+
+	/**
+	 * @author chenliujin <liujin.chen@qq.com>
 	 * @since 2016-10-09
 	 */
 	public function per_page_rows($num)
@@ -73,6 +82,7 @@ class Page extends \Model
 		$offset = ($this->current_page - 1) * $this->number_of_rows_per_page;
 		$offset = $offset . ',' . $this->number_of_rows_per_page;
 
+		$this->query .= ' ' . $this->order_by;
 		$this->query .= ' LIMIT ' . $offset;
 
 		return $this->query($this->query, $this->query_params);
