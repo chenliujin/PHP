@@ -163,9 +163,25 @@ class products extends \Model
 		];
 
 		$page = new \Page($sql, $params);
-		$page->per_page_rows(15);
+		$page->per_page_rows(12);
 		$page->order_by('ORDER BY products_id DESC');
 
 		return $page;
+	}
+
+	/**
+	 * @author chenliujin <liujin.chen@qq.com>
+	 * @since 2016-10-28
+	 */
+	static public function GetCategoriesProduct($sql)
+	{
+		$params = [];
+
+		$page = new \Page($sql, $params);
+		$page->per_page_rows(12);
+		//$page->order_by('ORDER BY products_id DESC');
+
+		return $page;
+	
 	}
 }

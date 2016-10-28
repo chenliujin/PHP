@@ -4,6 +4,12 @@ $page = new Page($query);
 $rs = $page->data();
  */
 
+
+/**
+ * TODO
+ * order by
+ * group by
+ */
 class Page extends \Model 
 {
 	public $query;
@@ -12,8 +18,6 @@ class Page extends \Model
 	public $page_total;
 	public $number_of_rows_per_page = 20;
 	public $current_page;
-
-
 
 	/**
 	 * @author chenliujin <liujin.chen@qq.com>
