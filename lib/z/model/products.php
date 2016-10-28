@@ -117,12 +117,17 @@ class products extends \Model
 
 		if ($price->sale_price) {
 			$price->sale_discount  = $currencies->format($price->normal_price - $price->sale_price);
-			$price->sale_discount .= '&nbsp;'; 
-			$price->sale_discount .= '(' . number_format(100 - (($price->sale_price / $price->normal_price) * 100), SHOW_SALE_DISCOUNT_DECIMALS) . '%)';
+			if ($price->normal_price) {
+				$price->sale_discount .= '&nbsp;'; 
+				$price->sale_discount .= '(' . number_format(100 - (($price->sale_price / $price->normal_price) * 100), SHOW_SALE_DISCOUNT_DECIMALS) . '%)';
+			}
 		} else {
 			$price->sale_discount  = $currencies->format($price->normal_price - $price->special_price);
-			$price->sale_discount .= '&nbsp;';
-			$price->sale_discount .= '(' . number_format(100 - (($price->special_price / $price->normal_price) * 100), SHOW_SALE_DISCOUNT_DECIMALS) . '%)';
+
+			if ($price->normal_price) {
+				$price->sale_discount .= '&nbsp;';
+				$price->sale_discount .= '(' . number_format(100 - (($price->special_price / $price->normal_price) * 100), SHOW_SALE_DISCOUNT_DECIMALS) . '%)';
+			}
 		}
 
 		return $price;
