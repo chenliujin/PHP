@@ -101,48 +101,82 @@ class Page extends \Model
 	{
 		if ($this->page_total <= 1) return;
 
-		$url = $_SERVER['REQUEST_URI'];
-		$url = preg_replace('/(#.+$|[?&]+' . $this->page_name . '=[0-9]+)/', '', $url);
+		$url  = $_SERVER['REQUEST_URI'];
+		$url  = preg_replace('/(#.+$|[?&]+' . $this->page_name . '=[0-9]+)/', '', $url);
+		$url .= strpos($url, '?') ? '&' : '?';
+		$url .= $this->page_name . '=';
 
 		if ($this->current_page <= 1) {
-			$pre = '<span class="tmp">&lt;</span>'; 
-			$next = $this->page_total > 1 ? ('<a href="' . $url . ((strpos($url, '?') ? '&' : '?') . $this->page_name . '=' . 2) . '"><span class="tmp">&gt;</span></a>') : '<span class="tmp">&gt;</span>';
+			$html = '<li>&lt;&nbsp;Previous Page</li>';
 		} else {
-			$preUrl = $url . (strpos($url, '?') ? '&' : '?') . $this->page_name . '=' . ($this->current_page - 1);
+			$html .= '<li><a href="' . $url . ($this->current_page - 1) . '">&lt;&nbsp;Previous Page</a></li>';
+		}
 
-			$pre = '
-				<a href="' . $preUrl . '">
-					<span class="tmp">&lt;</span>
-				</a>';
+		$start 	= $this->current_page-1 <= 1 ? 1 : $this->current_page-1;
 
-			if ($this->current_page+1 > $this->page_total) {
-				$next = '<span class="tmp">&gt;</span>';
+		if ($this->current_page+3 >= $this->page_total) {
+			$start 	= $this->page_total - 4;
+			$end 	= $this->page_total;
+		} else {
+			$end 	= $this->current_page + 1;
+		}
+
+		if ($end < 6) {
+			$start = 1;
+			$end = 5;
+		}
+
+		if ($start >= 3) {
+			$html .= '<li><a href="' . $url . '1">1</a></li>';
+			$html .= '<li>...</li>';
+		}
+
+		for ($i=$start; $i<=$end; $i++) {
+			if ($i == $this->current_page) {
+				$html .= '<li>' . $i . '</li>';
 			} else {
-				$url .= (strpos($url, '?') ? '&' : '?') . $this->page_name . '=' . (($this->current_page + 1 > $this->page_total) ? $this->page_total : $this->current_page + 1);
-				$next = '<a href="' . $url . '"><span class="tmp">&gt;</span></a>';
+				$html .= '<li><a href="' . $url . $i . '">' . $i . '</a></li>';
 			}
+		}
+
+		if ($end <= $this->page_total - 1) {
+			if ($end < $this->page_total - 1) {
+				$html .= '<li>...</li>';
+				$html .= '<li>' . $this->page_total . '</li>';
+			} else {
+				$html .= '<li><a href="">' . $this->page_total . '</a></li>';
+			}
+		}
+
+		if ($this->current_page + 1 > $this->page_total) {
+			$html .= '<li>Next Page&nbsp;&gt;</li>';
+		} else {
+			$html .= '<li><a href="' . $url . ($this->current_page + 1) . '">Next Page&nbsp;&gt;</a><li>';
 		}
 
 		$nav = <<<EOB
 <style>
-.pre, .next  {
-	border:1px #ccc solid;
-	border-radius:2px;
-	background:#FFF;
-	display: inline-block;
+nav {
+	height: 36px;
+	line-height: 36px;
+	background: #eee;
+	vertical-align:middle;
 }
-.tmp {
-	width: 15px;
-	padding:0.3em 1.5em;
-	background:#FFF;
+nav ul {
+	margin: 0;
+	list-style: none;
+	text-align: center;
+}
+nav li {
+	margin-left: 15px;
 	display: inline-block;
-
 }
 </style>
-		<ul style="list-style: none">
-			<li class="pre L" style="">$pre</li>
-			<li class="next R" style="margin-left: 10px">$next</li>
-		</ul>
+		<nav>
+			<ul>
+				$html
+			</ul>
+		</nav>
 EOB;
 		echo $nav;
 	}
