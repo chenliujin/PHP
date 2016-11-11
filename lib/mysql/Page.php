@@ -123,7 +123,7 @@ class Page extends \Model
 
 		if ($end < 6) {
 			$start = 1;
-			$end = 5;
+			$end = $this->page_total > 5 ? 5 : $this->page_total;
 		}
 
 		if ($start >= 3) {
