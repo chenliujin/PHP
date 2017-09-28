@@ -2,6 +2,7 @@
 # 安装
 
 ```
+yum install -y epel-release
 yum install -y composer
 ```
 
