@@ -1,4 +1,4 @@
-FROM docker.io/nginx-php-fpm:5.6.31
+FROM docker.io/nginx-php-fpm:5.6.32
 
 MAINTAINER chenliujin <liujin.chen@qq.com>
 
