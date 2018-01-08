@@ -12,10 +12,10 @@
 
 
 # license
-- 期限
-- IP
-- 域名
-- 用户数
+- Product Expiration 
+- IP Numbers
+- Zend Host ID's 
+- Concurrent Users 
 
 
 ## Licensing 
