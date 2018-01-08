@@ -29,6 +29,12 @@ zend_loader.license_path=
 ```
 
 
+### 多个 license 文件
+```
+zend_loader.license_path=/data/Zend/licenses/project1.zl:/data/Zend/licenses/project2.zl
+```
+
+
 ---
 
 
