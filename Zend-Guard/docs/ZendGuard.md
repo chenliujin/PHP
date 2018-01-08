@@ -8,9 +8,22 @@
 - Generated licenses will expire after 3 days.(如果使用 license 授权，license 3 天后过期)
 
 
+---
+
+
 # license
+- 期限
+- IP
+- 域名
+- 用户数
+
+
+## Licensing 
 - Configure License Keys -> Generate
 - Generate Product License File
+
+
+---
 
 
 # Encoding and Obfuscation methods(混淆设置)
