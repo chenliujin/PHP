@@ -1,8 +1,16 @@
 
 # Download
-
 - http://www.zend.com/en/products/zend-guard
 
+
+# 试用版
+- Encoded files will not be optimized, and will expire after 14 days.(加密的代码不会优化，并且加密的文件 14 天后过期)
+- Generated licenses will expire after 3 days.(如果使用 license 授权，license 3 天后过期)
+
+# license
+- Generate Product License File
+
+# 混淆设置
 
 # 参考文献
 - [PHP使用Zend Guard 6.0加密方法讲解](http://www.piaoyi.org/php/PHP-Zend-Guard-encode.html)
