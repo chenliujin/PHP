@@ -23,6 +23,12 @@
 - Generate Product License File
 
 
+## 配置
+```
+zend_loader.license_path=
+```
+
+
 ---
 
 
