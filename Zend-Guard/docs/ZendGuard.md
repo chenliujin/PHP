@@ -8,6 +8,10 @@
 - Generated licenses will expire after 3 days.(如果使用 license 授权，license 3 天后过期)
 
 
+# 正式版
+- [费用：$600/年](https://store.roguewave.com/zend-guard/zend-guard-annual/)
+
+
 ---
 
 
