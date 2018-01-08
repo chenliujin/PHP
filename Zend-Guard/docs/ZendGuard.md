@@ -44,5 +44,6 @@ zend_loader.license_path=/data/Zend/licenses/project1.zl:/data/Zend/licenses/pro
 
 
 # 参考文献
+- [官网](http://www.zend.com/)
 - [PHP使用Zend Guard 6.0加密方法讲解](http://www.piaoyi.org/php/PHP-Zend-Guard-encode.html)
 - https://www.cnblogs.com/gamir/p/4181775.html
