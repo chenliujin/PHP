@@ -10,6 +10,12 @@ mv phpunit-5.7.phar /usr/local/bin/phpunit
 
 # 代码覆盖率
 
+## PHP 扩展
+
+```
+yum install -y --enablerepo=remi,remi-php56 php-pecl-xdebug
+```
+
 ```
 phpunit --coverage-html reports/ tests/
 ```
