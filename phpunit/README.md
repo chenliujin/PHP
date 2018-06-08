@@ -19,3 +19,22 @@ phpunit --coverage-html reports/ tests/
 |-- src
 |-- tests
 |-- phpunit.xml
+
+## phpunit.xml
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stopOnFailure="false">
+    <testsuites>
+        <testsuite name="Account Tests">
+          <directory suffix="test.php">./tests/account</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>
+```
