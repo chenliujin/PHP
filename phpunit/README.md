@@ -14,3 +14,8 @@ mv phpunit-5.7.phar /usr/local/bin/phpunit
 phpunit --coverage-html reports/ tests/
 ```
 
+# 目录结构
+
+|-- src
+|-- tests
+|-- phpunit.xml
