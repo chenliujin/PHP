@@ -42,5 +42,24 @@ phpunit --coverage-html reports/ tests/
           <directory suffix="test.php">./tests/account</directory>
         </testsuite>
     </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory suffix=".php">.</directory>
+            <exclude>
+                <directory suffix=".php">./config</directory>
+                <directory suffix=".php">./data</directory>
+                <directory suffix=".php">./tests</directory>
+            </exclude>
+        </whitelist>
+    </filter>
+
+    <logging>
+        <log type="coverage-html" target="/data/www/phpunit/codeCoverage" charset="UTF-8"
+            yui="true" highlight="true"
+            lowUpperBound="50" highLowerBound="80"/>
+        <log type="testdox-html" target="/data/www/phpunit/testdox.html" />
+    </logging>
+
 </phpunit>
 ```
